@@ -17,7 +17,7 @@ if (userswithsamename.length > 0) {
 }
 }
 
-const authenticatedUser = (username,password)=> {
+const authenticated = (username,password)=> {
     // Filter the users array for any user with the same username and password
     let validusers = users.filter((user) => {
         return (user.username === username && user.password === password);
@@ -39,7 +39,7 @@ regd_users.post("/login", (req,res) => {
         return res.status(404).json({ message: "Error logging in" });
     }
     // Authenticate user
-    if (authenticatedUser(username, password)) {
+    if (authenticated(username, password)) {
         // Generate JWT access token
         let accessToken = jwt.sign({
             data: password
